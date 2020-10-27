@@ -22,21 +22,27 @@
 function mexicanWave(str){
     // Your code here!
 
-    const stand = function(letter) {
-        console.log(letter);
-    };
+    // create the array of strings with all spectators sitting
+    let sit_waves = `${str},`.repeat(str.length).split(',');
+    console.log(sit_waves);
+
+    // Make relevant spectator on each waves
+    for (wave of sit_waves) {
+        
+        continue;
+    }
 
     // loop thru every letter (incl whitespace) to give the no. of strings in the final array
     for (let j = 0; j < str.length; j++) {
         // loop thru every letter to make changes (make them stand)
         for (let i = 0; i < str.length; i++) {
-            let le = str.substr(i, 1);
+            let letter = str.substr(i, 1);
+            // get it's positon?
 
-            // Check if the letter is a whitespace
-            // Pass it to the stand func if not a whitespace
+            // Stand up if not a whitespace
             const re = /\s/;
-            if (!re.test(le)) {
-                stand(le);
+            if (!re.test(letter)) {
+                letter.toUpperCase();
             }
         }
     }
@@ -49,7 +55,7 @@ function mexicanWave(str){
     // console.log();
 }
 
-mexicanWave("hello ");
+mexicanWave("he llo");
 // module.exports = {
 //     mexicanWave
 // };
