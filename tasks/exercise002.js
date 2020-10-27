@@ -4,6 +4,8 @@
 
 function past(h, m, s){
     // Your code here!
+    // timestamp starting at 00:00
+    return h * 3600000 + m * 60000 + s * 1000;
 }
 
 module.exports = {
