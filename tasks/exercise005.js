@@ -1,17 +1,17 @@
 // Introduction
-// The wave (known as the Mexican wave in the English-speaking world outside North America) is an example of metachronal rhythm achieved in a packed 
-// stadium when successive groups of spectators briefly stand, yell, and raise their arms. Immediately upon stretching to full height, the spectator 
+// The wave (known as the Mexican wave in the English-speaking world outside North America) is an example of metachronal rhythm achieved in a packed
+// stadium when successive groups of spectators briefly stand, yell, and raise their arms. Immediately upon stretching to full height, the spectator
 // returns to the usual seated position.
 
-// The result is a wave of standing spectators that travels through the crowd, even though individual spectators never move away from their seats. 
-// In many large arenas the crowd is seated in a contiguous circuit all the way around the sport field, and so the wave is able to travel continuously 
-// around the arena; in discontiguous seating arrangements, the wave can instead reflect back and forth through the crowd. When the gap in seating is narrow, 
-// the wave can sometimes pass through it. Usually only one wave crest will be present at any given time in an arena, although simultaneous, counter-rotating 
+// The result is a wave of standing spectators that travels through the crowd, even though individual spectators never move away from their seats.
+// In many large arenas the crowd is seated in a contiguous circuit all the way around the sport field, and so the wave is able to travel continuously
+// around the arena; in discontiguous seating arrangements, the wave can instead reflect back and forth through the crowd. When the gap in seating is narrow,
+// the wave can sometimes pass through it. Usually only one wave crest will be present at any given time in an arena, although simultaneous, counter-rotating
 // waves have been produced. (Source Wikipedia)
 
 // Task
-// In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return that string 
-// in an array where an uppercase letter is a person standing up. 
+// In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return that string
+// in an array where an uppercase letter is a person standing up.
 
 // Rules
 //  1.  The input string will always be lower case but maybe empty.
@@ -21,8 +21,35 @@
 
 function mexicanWave(str){
     // Your code here!
+
+    const stand = function(letter) {
+        console.log(letter);
+    };
+
+    // loop thru every letter (incl whitespace) to give the no. of strings in the final array
+    for (let j = 0; j < str.length; j++) {
+        // loop thru every letter to make changes (make them stand)
+        for (let i = 0; i < str.length; i++) {
+            let le = str.substr(i, 1);
+
+            // Check if the letter is a whitespace
+            // Pass it to the stand func if not a whitespace
+            const re = /\s/;
+            if (!re.test(le)) {
+                stand(le);
+            }
+        }
+    }
+
+
+
+
+
+
+    // console.log();
 }
 
-module.exports = {
-    mexicanWave
-};
+mexicanWave("hello ");
+// module.exports = {
+//     mexicanWave
+// };
