@@ -30,13 +30,22 @@ function mexicanWave(str){
     // create the array of strings with all spectators sitting
     let sit_waves = `${str},`.repeat(str.length).split(',');    //bug, added one more ","
     sit_waves.pop();    // pop off the last ","
-    console.log(sit_waves);
-    sit_waves.pop;
+    // console.log(sit_waves);
+
+    // Testing out the array.entries() output
+    // for (const [k, v] of sit_waves.entries()) {
+    //     console.log(k);
+    //     console.log(v);
+    // }
 
     // Make relevant spectator stand on each waves
-    let stand_waves = sit_waves.map((spec_state, t) => {
-        // change the t th char, of the spec_state
-        let letter = spec_state.substr(t, 1);
+    // let stand_waves = sit_waves.map((spec_state, t) => {  // replace this with a for or for/of loop
+    // change the t th char, of the wave_state
+    let stand_waves = [];
+
+    // use for/of loop instead of array.map to allow the use of "continue" below
+    for (let [t, wave_state] of sit_waves.entries()) {
+        let letter = wave_state.substr(t, 1);
 
         // Stand up only if not a whitespace
         // and stick the letter back to its original place
@@ -44,35 +53,46 @@ function mexicanWave(str){
         if (!re.test(letter)) {
             letter = letter.toUpperCase();
         }
-
-        let stand_wave = "";
-        if (t === 0) {
-            // first case
-            // the letter occupies 1 space
-            stand_wave = letter + spec_state.substr(t + 1, spec_state.length - t - 1);
-        }
-        else if (t === spec_state.length - 1) {
-            //last case
-            // the letter occupies 1 space
-            stand_wave = spec_state.substr(0, spec_state.length - 1) + letter;
-        }
         else {
-            // normal (not the first or last) case
-            // the letter occupies 1 space
-            // eg: "hello", length = 5; t = 1
-            stand_wave =  spec_state.substr(0, t) + letter + spec_state.substr(t + 1 , spec_state.length - 1 - t);
+            // skip the whitespace
+            t++;
+            continue;
         }
-        // console.log(stand_wave);
-        return stand_wave;
-    });
 
+        // let stand_wave = "";
+        // if (t === 0) {
+        //     // first case
+        //     // the letter occupies 1 space
+        //     stand_wave = letter + spec_state.substr(t + 1, spec_state.length - t - 1);
+        // }
+        // else if (t === spec_state.length - 1) {
+        //     //last case
+        //     // the letter occupies 1 space
+        //     stand_wave = spec_state.substr(0, spec_state.length - 1) + letter;
+        // }
+        // else {
+        //     // normal (not the first or last) case
+        //     // the letter occupies 1 space
+        //     // eg: "hello", length = 5; t = 1
+        //     stand_wave =  spec_state.substr(0, t) + letter + spec_state.substr(t + 1 , spec_state.length - 1 - t);
+        // }
+
+        // no need to have seperate cases
+        stand_wave = wave_state.substr(0, t) + letter + wave_state.substr(t + 1 , wave_state.length - 1 - t);
+        // console.log(stand_wave);
+        // return stand_wave;
+        stand_waves.push(stand_wave);
+    // });
+    }
     console.log(stand_waves);
     return stand_waves;
 }
-mexicanWave("");
-mexicanWave("hello");
-mexicanWave("coding");  //Eroor in the test
-    // wrong in dealing with space
-// module.exports = {
-//     mexicanWave
-// };
+// mexicanWave("");
+// mexicanWave("hello");
+// mexicanWave("coding");  //Eroor in the test
+// mexicanWave("two words");
+// mexicanWave(" gap ");
+
+module.exports = {
+    mexicanWave
+};
