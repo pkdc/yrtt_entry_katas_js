@@ -22,40 +22,57 @@
 function mexicanWave(str){
     // Your code here!
 
+    // check if the str is an empty string
+    // if(str === "") {
+    //     return [];
+    // }
+
     // create the array of strings with all spectators sitting
-    let sit_waves = `${str},`.repeat(str.length).split(',');
+    let sit_waves = `${str},`.repeat(str.length).split(',');    //bug, added one more ","
+    sit_waves.pop();    // pop off the last ","
     console.log(sit_waves);
+    sit_waves.pop;
 
-    // Make relevant spectator on each waves
-    for (wave of sit_waves) {
-        
-        continue;
-    }
+    // Make relevant spectator stand on each waves
+    let stand_waves = sit_waves.map((spec_state, t) => {
+        // change the t th char, of the spec_state
+        let letter = spec_state.substr(t, 1);
 
-    // loop thru every letter (incl whitespace) to give the no. of strings in the final array
-    for (let j = 0; j < str.length; j++) {
-        // loop thru every letter to make changes (make them stand)
-        for (let i = 0; i < str.length; i++) {
-            let letter = str.substr(i, 1);
-            // get it's positon?
-
-            // Stand up if not a whitespace
-            const re = /\s/;
-            if (!re.test(letter)) {
-                letter.toUpperCase();
-            }
+        // Stand up only if not a whitespace
+        // and stick the letter back to its original place
+        const re = /\s/;
+        if (!re.test(letter)) {
+            letter = letter.toUpperCase();
         }
-    }
 
+        let stand_wave = "";
+        if (t === 0) {
+            // first case
+            // the letter occupies 1 space
+            stand_wave = letter + spec_state.substr(t + 1, spec_state.length - t - 1);
+        }
+        else if (t === spec_state.length - 1) {
+            //last case
+            // the letter occupies 1 space
+            stand_wave = spec_state.substr(0, spec_state.length - 1) + letter;
+        }
+        else {
+            // normal (not the first or last) case
+            // the letter occupies 1 space
+            // eg: "hello", length = 5; t = 1
+            stand_wave =  spec_state.substr(0, t) + letter + spec_state.substr(t + 1 , spec_state.length - 1 - t);
+        }
+        // console.log(stand_wave);
+        return stand_wave;
+    });
 
-
-
-
-
-    // console.log();
+    console.log(stand_waves);
+    return stand_waves;
 }
-
-mexicanWave("he llo");
+mexicanWave("");
+mexicanWave("hello");
+mexicanWave("coding");  //Eroor in the test
+    // wrong in dealing with space
 // module.exports = {
 //     mexicanWave
 // };
