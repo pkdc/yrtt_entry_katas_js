@@ -62,6 +62,7 @@ function pigLatin(str){
 // pigLatin('Pig latin is cool');
 // pigLatin('This is my string');
 // pigLatin('Pig latin is cool!!');
+// pigLatin('Pig* latin $is cool!!');
 
 module.exports = {
     pigLatin
