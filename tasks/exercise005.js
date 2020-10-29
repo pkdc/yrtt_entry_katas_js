@@ -28,7 +28,7 @@ function mexicanWave(str){
     // }
 
     // create the array of strings with all spectators sitting
-    let sit_waves = `${str},`.repeat(str.length).split(',');    //bug, added one more ","
+    const sit_waves = `${str},`.repeat(str.length).split(',');    //bug, added one more ",", (solved)
     sit_waves.pop();    // pop off the last ","
     // console.log(sit_waves);
 
@@ -39,21 +39,23 @@ function mexicanWave(str){
     // }
 
     // Make relevant spectator stand on each waves
-    // let stand_waves = sit_waves.map((spec_state, t) => {  // replace this with a for or for/of loop
+    // let stand_waves = sit_waves.map((spec_state, t) => {  // replaced this with a for or for/of loop
     // change the t th char, of the wave_state
+
     let stand_waves = [];
 
     // use for/of loop instead of array.map to allow the use of "continue" below
     for (let [t, wave_state] of sit_waves.entries()) {
+        // extract the relevant spectator, and make him/her stand on each waves
         let letter = wave_state.substr(t, 1);
 
         // Stand up only if not a whitespace
         // and stick the letter back to its original place
         const re = /\s/;
-        if (!re.test(letter)) {
+        if (!re.test(letter)) { // case not whitespace
             letter = letter.toUpperCase();
         }
-        else {
+        else {  //  case whitespace
             // skip the whitespace
             t++;
             continue;
@@ -80,11 +82,11 @@ function mexicanWave(str){
         // no need to have seperate cases
         stand_wave = wave_state.substr(0, t) + letter + wave_state.substr(t + 1 , wave_state.length - 1 - t);
         // console.log(stand_wave);
-        // return stand_wave;
+        // return stand_wave;   // for the obsolete map function
         stand_waves.push(stand_wave);
-    // });
+    // });  // for the obsolete map function
     }
-    console.log(stand_waves);
+    // console.log(stand_waves);
     return stand_waves;
 }
 // mexicanWave("");

@@ -30,16 +30,16 @@ function rowWeights(array){
     // put and return the sum into an array
 
     // put the element in 2 teams, even and odd index
-    let even = [];
-    let odd = [];
+    let team_even = [];
+    let team_odd = [];
 
     array.forEach((el, index) => {
         if(index % 2 === 0) {
             // even team member
-            even.push(el);
+            team_even.push(el);
         } else {
             // odd team member
-            odd.push(el);
+            team_odd.push(el);
         }
     });
     // console.log(even);
@@ -47,18 +47,18 @@ function rowWeights(array){
 
     // Sum the elements up for the 2 teams (write a summing func)
     function sum_arr(arr) {
-        let total = 0;
+        let total_weight = 0;
 
         for (let i = 0; i < arr.length; i++) {
-            total += arr[i];
+            total_weight += arr[i];
         }
-        
-        return total;
+
+        return total_weight;
     }
 
     // put and return the sum into an array
     // console.log([sum_arr(even), sum_arr(odd)]);
-    return [sum_arr(even), sum_arr(odd)];
+    return [sum_arr(team_even), sum_arr(team_odd)];
 
 }
 // rowWeights([13, 27, 49]);

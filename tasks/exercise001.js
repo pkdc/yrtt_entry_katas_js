@@ -17,11 +17,6 @@ function singles(arr){
     let sum = 0;    //initail value of sum
     let arr_prev = [];  // store prev values
 
-    // Extra:
-    // for more than twice scenerios
-    // keep count of the occurence?
-    // if more than twice occurence, do not deduct from sum
-
     for (const number of arr) {
         if (arr_prev.includes(number)) {
             sum -= number;
